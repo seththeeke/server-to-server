@@ -14,8 +14,8 @@ import javax.ws.rs.core.UriInfo;
 import org.aeonbits.owner.ConfigFactory;
 
 import humans.Human;
-import properties.Server1ServiceProperties;
-import properties.Server2ServiceProperties;
+import properties.PlaceServiceProperties;
+import properties.HumanServiceProperties;
 import services.IHumanService;
 import services.rest.IHumanRestService;
 
@@ -49,7 +49,7 @@ public class HumanRestService implements IHumanRestService{
 	public IHumanService getHumanService(URI myUri){
 		int serverPort = myUri.getPort();
 		if (serverPort == 8090){
-			Server1ServiceProperties services = ConfigFactory.create(Server1ServiceProperties.class);
+			PlaceServiceProperties services = ConfigFactory.create(PlaceServiceProperties.class);
 			String humanService = services.humanService();
 			IHumanService service;
 			try {
@@ -62,7 +62,7 @@ public class HumanRestService implements IHumanRestService{
 			return service;
 		}
 		else if (serverPort == 8080){
-			Server2ServiceProperties services = ConfigFactory.create(Server2ServiceProperties.class);
+			HumanServiceProperties services = ConfigFactory.create(HumanServiceProperties.class);
 			String humanService = services.humanService();
 			IHumanService service;
 			try {

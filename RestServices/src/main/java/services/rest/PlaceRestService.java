@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.aeonbits.owner.ConfigFactory;
 import places.Place;
-import properties.Server1ServiceProperties;
-import properties.Server2ServiceProperties;
+import properties.PlaceServiceProperties;
+import properties.HumanServiceProperties;
 import services.IPlaceService;
 
 @Path("places")
@@ -44,7 +44,7 @@ public class PlaceRestService {
 	public IPlaceService getPlaceService(URI myUri){
 		int serverPort = myUri.getPort();
 		if (serverPort == 8090){
-			Server1ServiceProperties services = ConfigFactory.create(Server1ServiceProperties.class);
+			PlaceServiceProperties services = ConfigFactory.create(PlaceServiceProperties.class);
 			String placeService = services.placeService();
 			IPlaceService service;
 			try {
@@ -57,7 +57,7 @@ public class PlaceRestService {
 			return service;
 		}
 		else if (serverPort == 8080){
-			Server2ServiceProperties services = ConfigFactory.create(Server2ServiceProperties.class);
+			HumanServiceProperties services = ConfigFactory.create(HumanServiceProperties.class);
 			String placeService = services.placeService();
 			IPlaceService service;
 			try {

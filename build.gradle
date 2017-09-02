@@ -1,4 +1,4 @@
-project(':Server1') {
+project(':PlaceServer') {
     apply plugin: 'java'
     apply plugin: 'eclipse'
 
@@ -30,7 +30,7 @@ project(':Server1') {
 	}
 }
 
-project(':Server2') {
+project(':HumanServer') {
     apply plugin: 'java'
     apply plugin: 'eclipse'
 
@@ -72,8 +72,8 @@ project(':RestServices') {
     dependencies {
         compile project(':Interfaces')
         compile project(':Objects')
-        compile project(':Server2Services')
-        compile project(':Server1Services')
+        compile project(':HumanServices')
+        compile project(':PlaceServices')
         compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
         compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.7'
         compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.7'
@@ -85,7 +85,7 @@ project(':RestServices') {
     }
 }
 
-project(':Server1Services') {
+project(':PlaceServices') {
     apply plugin: 'java'
     apply plugin: 'eclipse'
  
@@ -107,7 +107,7 @@ project(':Server1Services') {
     }
 }
 
-project(':Server2Services') {
+project(':HumanServices') {
     apply plugin: 'java'
     apply plugin: 'eclipse'
  
