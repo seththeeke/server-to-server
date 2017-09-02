@@ -1,0 +1,135 @@
+project(':Server1') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    task fatJar(type: Jar) {
+        manifest {
+            attributes 'Implementation-Title': 'Server Jar',
+                'Implementation-Version': 1.0,
+                'Main-Class': 'server.BaseWebServer'
+        }
+        baseName = 'project-jar'
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+        with jar
+    }
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile project(':Server1Services')
+    	compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.6.v20170531'
+    	compile group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.4.5.v20170502'
+    	compile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: '9.4.6.v20170531'
+    	compile group: 'org.eclipse.jetty', name: 'jetty-http', version: '9.4.5.v20170502'
+    	compile group: 'org.eclipse.jetty', name: 'jetty-io', version: '9.4.5.v20170502'
+    	compile group: 'org.eclipse.jetty', name: 'jetty-security', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.6.v20170531'	}
+}
+
+project(':Server1Services') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile project(':Interfaces')
+        compile project(':Objects')
+        compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
+        compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.7'
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.7'
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: '2.7'
+        compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.7'
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.2.3'
+        compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.3.1'
+    }
+}
+
+project(':Server2Services') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile project(':Interfaces')
+        compile project(':Objects')
+        compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
+        compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.7'
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.7'
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: '2.7'
+        compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.7'
+        compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.2.3'
+        compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.3.1'
+    }
+}
+
+project(':Interfaces') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile project(':Objects')
+        compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0'
+        compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.7'
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.7'
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: '2.7'
+        compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.7'
+    }
+}
+
+project(':Objects') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile group: 'javax.json', name: 'javax.json-api', version: '1.1'
+        compile group: 'org.glassfish', name: 'javax.json', version: '1.1'
+    }
+}
+
+project(':Server2') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    task fatJar(type: Jar) {
+        manifest {
+            attributes 'Implementation-Title': 'Server Jar',
+                'Implementation-Version': 1.0,
+                'Main-Class': 'server.JettyServer'
+        }
+        baseName = 'project-jar'
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+        with jar
+    }
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile project(':Server2Services')
+        compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.6.v20170531'
+        compile group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: '9.4.6.v20170531'
+        compile group: 'org.eclipse.jetty', name: 'jetty-http', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-io', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-security', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.6.v20170531'   }
+}
