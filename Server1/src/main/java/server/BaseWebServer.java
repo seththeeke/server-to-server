@@ -3,10 +3,8 @@ package server;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import org.glassfish.jersey.server.ResourceConfig;
 
 import service.Services;
-import services.rest.HumanRestService;
 
 public class BaseWebServer {
 

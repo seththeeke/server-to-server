@@ -9,7 +9,6 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import humans.Human;
 
 public class Place {
 	

@@ -10,16 +10,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-
-import org.aeonbits.owner.Config;
 import org.aeonbits.owner.ConfigFactory;
-
 import places.Place;
 import properties.Server1ServiceProperties;
 import properties.Server2ServiceProperties;
-import services.IHumanService;
 import services.IPlaceService;
-import services.server1.Server1PlaceService;
 
 @Path("places")
 public class PlaceRestService {

@@ -17,9 +17,7 @@ import humans.Human;
 import properties.Server1ServiceProperties;
 import properties.Server2ServiceProperties;
 import services.IHumanService;
-import services.IPlaceService;
 import services.rest.IHumanRestService;
-import services.server1.Server1HumanService;
 
 @Path("humans")
 public class HumanRestService implements IHumanRestService{
