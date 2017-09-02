@@ -28,9 +28,9 @@ public class PlaceRestService {
 	UriInfo uri;
 	
 	IPlaceService placeService;
-	private Server1ServiceProperties serviceProperties;
 	
 	public PlaceRestService(){
+		System.out.println("Created PlaceRestService");
 	}
 	
 	@GET
