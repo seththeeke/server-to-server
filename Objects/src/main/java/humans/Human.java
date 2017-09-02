@@ -1,18 +1,12 @@
 package humans;
 
-import java.io.Serializable;
 import java.io.StringReader;
 
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-public class Human implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Human {
 	
 	private String name;
 	

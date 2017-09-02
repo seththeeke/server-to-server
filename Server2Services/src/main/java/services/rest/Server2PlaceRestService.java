@@ -29,7 +29,7 @@ public class Server2PlaceRestService implements IPlaceRestService {
 	@Path("/{placeId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlace(@PathParam("placeId") final String placeId){
-        return Response.ok(getPlaceService().getPlace(placeId)).build();
+        return Response.ok(getPlaceService().getPlace(placeId).toJSON()).build();
     }
 
 	public IPlaceService getPlaceService(){

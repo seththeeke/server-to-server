@@ -7,6 +7,7 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import humans.Human;
 import places.Place;
 
 /**
@@ -26,11 +27,11 @@ public class Server2PlaceService implements IPlaceService{
 
 	@Override
 	public Place getPlace(String placeId) {
-		final Client client = ClientBuilder.newClient();
+        final Client client = ClientBuilder.newClient();
         Response response = client.target("http://localhost:8090/places/" + placeId)
                                   .request(MediaType.APPLICATION_JSON).get();
-        
-        return (Place) response.getEntity();
+        String placeJSON = response.readEntity(String.class);
+        return Place.fromJSON(placeJSON);
 	}
 
 }
