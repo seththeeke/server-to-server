@@ -1,5 +1,5 @@
 # server-to-server
-Simple Project where two servers speak to each other to access data
+Project where two servers speak to each other to access data
 
 ## About
 There are two projects. A human service and a place service. The data for each service is only accessable through the "database"(hashmap) that belongs to the service. So, in order to access place related data through the human server port, the human service sends a request to the place service. For example, a user can access the human data via curl http://localhost:8080/humans OR through curl http://localhost:8090/humans however going through port 8090 will require an additional internal request between the two servers.<br>
