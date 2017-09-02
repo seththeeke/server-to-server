@@ -10,7 +10,7 @@ Gradle build tool<br>
 
 Ensure you have gradle installed on your machine(https://gradle.org/install/) and navigate to the base project directory. You can control the server properties by placing a properties file called serverConfig.properties in your /etc/properties directory. The properties file example also exists in the Interfaces/src/main/resources directory of this project.<br>
 
-To run:
+To run:<br>
 <code>Run $ chmod 700 runPlace.sh</code><br>
 <code>Run $ chmod 700 runHuman.sh</code><br>
 <code>Run $ gradle cleanEclipse eclipse build fatJar to build</code><br>
@@ -25,9 +25,9 @@ Postman returns the values in the "prettiest" forms.<br>
 <code>$ curl http://localhost:8080/places</code><br>
 <code>$ curl http://localhost:8080/humans</code><br>
 <code>$ curl http://localhost:8080/places/{placeId}</code><br>
-<code>curl http://localhost:8080/humans/{humanId}</code><br><br>
+<code>$ curl http://localhost:8080/humans/{humanId}</code><br><br>
 
-<code>curl http://localhost:8090/places</code><br>
-<code>curl http://localhost:8090/humans</code><br>
-<code>curl http://localhost:8090/places/{placeId}</code><br>
-<code>curl http://localhost:8090/humans/{humanId}</code><br>
+<code>$ curl http://localhost:8090/places</code><br>
+<code>$ curl http://localhost:8090/humans</code><br>
+<code>$ curl http://localhost:8090/places/{placeId}</code><br>
+<code>$ curl http://localhost:8090/humans/{humanId}</code><br>
