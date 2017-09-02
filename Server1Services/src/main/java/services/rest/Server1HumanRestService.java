@@ -7,7 +7,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.aeonbits.owner.ConfigFactory;
+
 import humans.Human;
+import properties.ServiceProperties;
 import services.IHumanService;
 import services.Server1HumanService;
 import services.rest.IHumanRestService;
@@ -33,7 +36,17 @@ public class Server1HumanRestService implements IHumanRestService{
     }
 	
 	public IHumanService getHumanService(){
-		return new Server1HumanService();
+		ServiceProperties services = ConfigFactory.create(ServiceProperties.class);
+		String humanService = services.humanService();
+		IHumanService service;
+		try {
+			service = (IHumanService) Class.forName(humanService).newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			service = null;
+		}
+		return service;
 	}
 
 }

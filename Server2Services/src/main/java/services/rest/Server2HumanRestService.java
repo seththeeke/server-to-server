@@ -7,6 +7,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.aeonbits.owner.ConfigFactory;
+
+import properties.ServiceProperties;
 import services.IHumanService;
 import services.Server2HumanService;
 import services.rest.IHumanRestService;
@@ -28,11 +31,21 @@ public class Server2HumanRestService implements IHumanRestService{
     @Produces(MediaType.APPLICATION_JSON)
 	@Override
     public Response getHumanById(@PathParam("humanId") final String humanId){
-		return Response.ok(getHumanService().getHumanById(humanId).toJSON()).build();
+        return Response.ok(getHumanService().getHumanById(humanId).toJSON()).build();
     }
 	
 	public IHumanService getHumanService(){
-		return new Server2HumanService();
+		ServiceProperties services = ConfigFactory.create(ServiceProperties.class);
+		String humanService = services.humanService();
+		IHumanService service;
+		try {
+			service = (IHumanService) Class.forName(humanService).newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			service = null;
+		}
+		return service;
 	}
 
 }

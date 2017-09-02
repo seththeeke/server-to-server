@@ -7,6 +7,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.aeonbits.owner.ConfigFactory;
+
+import properties.ServiceProperties;
 import services.IPlaceService;
 import services.Server2PlaceService;
 import services.rest.IPlaceRestService;
@@ -26,11 +29,21 @@ public class Server2PlaceRestService implements IPlaceRestService {
 	@Path("/{placeId}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlace(@PathParam("placeId") final String placeId){
-		return Response.ok(getPlaceService().getPlace(placeId)).build();
+        return Response.ok(getPlaceService().getPlace(placeId)).build();
     }
 
-	private IPlaceService getPlaceService() {
-		return new Server2PlaceService();
+	public IPlaceService getPlaceService(){
+		ServiceProperties services = ConfigFactory.create(ServiceProperties.class);
+		String placeService = services.placeService();
+		IPlaceService service;
+		try {
+			service = (IPlaceService) Class.forName(placeService).newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			service = null;
+		}
+		return service;
 	}
 
 }
