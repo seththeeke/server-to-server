@@ -1,4 +1,4 @@
-package services;
+package services.server1;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import humans.Human;
+import services.IHumanService;
 
 /**
  * Server2 Owns the Human Data
@@ -15,6 +16,10 @@ import humans.Human;
  *
  */
 public class Server1HumanService implements IHumanService{
+	
+	public Server1HumanService(){
+		System.out.println("Creating Server 1 Human Service");
+	}
 
 	@Override
 	public List<Human> getHumans() {

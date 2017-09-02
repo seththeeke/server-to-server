@@ -10,15 +10,20 @@ import javax.ws.rs.core.Response;
 import org.aeonbits.owner.ConfigFactory;
 
 import humans.Human;
-import properties.ServiceProperties;
+import properties.Server1ServiceProperties;
 import services.IHumanService;
-import services.Server1HumanService;
 import services.rest.IHumanRestService;
+import services.server1.Server1HumanService;
 
 @Path("humans")
-public class Server1HumanRestService implements IHumanRestService{
+public class HumanRestService implements IHumanRestService{
 	
 	IHumanService humanService;
+	private Server1ServiceProperties serviceProperties;
+	
+	public HumanRestService(final Server1ServiceProperties serviceProperties){
+		this.serviceProperties = serviceProperties;
+	}
 	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -36,7 +41,7 @@ public class Server1HumanRestService implements IHumanRestService{
     }
 	
 	public IHumanService getHumanService(){
-		ServiceProperties services = ConfigFactory.create(ServiceProperties.class);
+		Server1ServiceProperties services = ConfigFactory.create(Server1ServiceProperties.class);
 		String humanService = services.humanService();
 		IHumanService service;
 		try {

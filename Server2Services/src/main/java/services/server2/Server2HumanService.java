@@ -1,4 +1,4 @@
-package services;
+package services.server2;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import humans.Human;
+import services.IHumanService;
 
 /**
  * Server2 Owns the Human Data
@@ -13,6 +14,10 @@ import humans.Human;
  *
  */
 public class Server2HumanService implements IHumanService{
+	
+	public Server2HumanService(){
+		System.out.println("Creating Server 2 Human Service");
+	}
 	
 	public Map<String, Human> humans;
 

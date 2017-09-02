@@ -1,4 +1,4 @@
-package services;
+package services.server2;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import humans.Human;
 import places.Place;
+import services.IPlaceService;
 
 /**
  * Server 1 Owns the Place Data
@@ -16,6 +17,10 @@ import places.Place;
  *
  */
 public class Server2PlaceService implements IPlaceService{
+	
+	public Server2PlaceService(){
+		System.out.println("Creating Server 2 Place Service");
+	}
 
 	@Override
 	public List<Place> getPlaces() {

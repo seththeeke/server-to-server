@@ -4,11 +4,11 @@ import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.Sources;
 
 @Sources({ "classpath:services.properties" })
-public interface ServiceProperties extends Config{
+public interface Server1ServiceProperties extends Config{
 	
-	@Key("human.service")
+	@Key("human.server1.service")
     String humanService();
 	
-	@Key("place.service")
+	@Key("place.server1.service")
     String placeService();
 }

@@ -1,4 +1,4 @@
-package services;
+package services.server1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import places.Place;
+import services.IPlaceService;
 
 /**
  * Server 1 Owns the Place Data
@@ -14,6 +15,10 @@ import places.Place;
  */
 public class Server1PlaceService implements IPlaceService{
 	
+	public Server1PlaceService(){
+		System.out.println("Creating Server 1 Place Service");
+	}
+
 	private Map<String, Place> places;
 
 	@Override

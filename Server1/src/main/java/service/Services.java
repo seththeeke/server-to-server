@@ -1,13 +1,13 @@
 package service;
 
-import services.rest.Server1HumanRestService;
-import services.rest.Server1PlaceRestService;
+import services.rest.HumanRestService;
+import services.rest.PlaceRestService;
 
 public class Services {
 	
 	private static String[] services = {
-			Server1HumanRestService.class.getCanonicalName(),
-			Server1PlaceRestService.class.getCanonicalName()
+			HumanRestService.class.getCanonicalName(),
+			PlaceRestService.class.getCanonicalName()
 	};
 	
 	public static String[] getServices(){
