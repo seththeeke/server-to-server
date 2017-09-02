@@ -24,7 +24,7 @@ public class Server1HumanRestService implements IHumanRestService{
     @Produces(MediaType.APPLICATION_JSON)
 	@Override
     public Response getHumans(){
-        return Response.ok(getHumanService().getHumans()).build();
+        return Response.ok(Human.listToJSON(getHumanService().getHumans())).build();
     }
 	
 	@GET

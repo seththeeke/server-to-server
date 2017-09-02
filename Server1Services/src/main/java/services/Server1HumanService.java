@@ -1,6 +1,5 @@
 package services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -22,7 +21,7 @@ public class Server1HumanService implements IHumanService{
 		final Client client = ClientBuilder.newClient();
         Response response = client.target("http://localhost:8080/humans")
                                   .request(MediaType.APPLICATION_JSON).get();
-        return response.readEntity(ArrayList.class);
+        return Human.listFromJSON(response.readEntity(String.class));
 	}
 
 	@Override

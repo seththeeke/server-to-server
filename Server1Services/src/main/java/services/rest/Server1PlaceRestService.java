@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.aeonbits.owner.ConfigFactory;
 
+import places.Place;
 import properties.ServiceProperties;
 import services.IHumanService;
 import services.IPlaceService;
@@ -22,7 +23,7 @@ public class Server1PlaceRestService {
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlaces(){
-        return Response.ok(getPlaceService().getPlaces()).build();
+        return Response.ok(Place.listToJSON(getPlaceService().getPlaces())).build();
     }
 	
 	@GET

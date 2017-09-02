@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.aeonbits.owner.ConfigFactory;
 
+import humans.Human;
 import properties.ServiceProperties;
 import services.IHumanService;
 import services.Server2HumanService;
@@ -23,7 +24,7 @@ public class Server2HumanRestService implements IHumanRestService{
     @Produces(MediaType.APPLICATION_JSON)
 	@Override
     public Response getHumans(){
-        return Response.ok(getHumanService().getHumans()).build();
+        return Response.ok(Human.listToJSON(getHumanService().getHumans())).build();
     }
 	
 	@GET

@@ -22,7 +22,7 @@ public class Server2PlaceService implements IPlaceService{
 		final Client client = ClientBuilder.newClient();
         Response response = client.target("http://localhost:8090/places")
                                   .request(MediaType.APPLICATION_JSON).get();
-        return (List<Place>) response.getEntity();
+        return Place.listFromJSON(response.readEntity(String.class));
 	}
 
 	@Override
