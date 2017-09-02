@@ -15,6 +15,7 @@ import org.aeonbits.owner.ConfigFactory;
 
 import humans.Human;
 import properties.PlaceServiceProperties;
+import properties.ServerProperties;
 import properties.HumanServiceProperties;
 import services.IHumanService;
 import services.rest.IHumanRestService;
@@ -34,7 +35,7 @@ public class HumanRestService implements IHumanRestService{
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	@Override
-    public Response getHumans(){
+    public Response getHumans() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
         return Response.ok(Human.listToJSON(getHumanService(this.uri.getBaseUri()).getHumans())).build();
     }
 	
@@ -42,39 +43,22 @@ public class HumanRestService implements IHumanRestService{
 	@Path("/{humanId}")
     @Produces(MediaType.APPLICATION_JSON)
 	@Override
-    public Response getHumanById(@PathParam("humanId") final String humanId){
+    public Response getHumanById(@PathParam("humanId") final String humanId) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
         return Response.ok(getHumanService(this.uri.getBaseUri()).getHumanById(humanId).toJSON()).build();
     }
 	
-	public IHumanService getHumanService(URI myUri){
+	public IHumanService getHumanService(URI myUri) throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+		ServerProperties config = ConfigFactory.create(ServerProperties.class);
 		int serverPort = myUri.getPort();
-		if (serverPort == 8090){
+		if (serverPort == config.getPlacePort()){
 			PlaceServiceProperties services = ConfigFactory.create(PlaceServiceProperties.class);
-			String humanService = services.humanService();
-			IHumanService service;
-			try {
-				service = (IHumanService) Class.forName(humanService).newInstance();
-			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				service = null;
-			}
-			return service;
+			return (IHumanService) Class.forName(services.humanService()).newInstance();
 		}
-		else if (serverPort == 8080){
+		else if (serverPort == config.getHumanPort()){
 			HumanServiceProperties services = ConfigFactory.create(HumanServiceProperties.class);
-			String humanService = services.humanService();
-			IHumanService service;
-			try {
-				service = (IHumanService) Class.forName(humanService).newInstance();
-			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				service = null;
-			}
-			return service;
+			return (IHumanService) Class.forName(services.humanService()).newInstance();
 		} else{
-			return null;
+			throw new IllegalStateException("Request cannot be processed for any other ports");
 		}
 	}
 
