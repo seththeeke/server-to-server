@@ -6,7 +6,7 @@ project(':PlaceServer') {
         manifest {
             attributes 'Implementation-Title': 'Server Jar',
                 'Implementation-Version': 1.0,
-                'Main-Class': 'server.BaseWebServer'
+                'Main-Class': 'server.PlaceServer'
         }
         baseName = 'project-jar'
         from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
@@ -38,7 +38,7 @@ project(':HumanServer') {
         manifest {
             attributes 'Implementation-Title': 'Server Jar',
                 'Implementation-Version': 1.0,
-                'Main-Class': 'server.JettyServer'
+                'Main-Class': 'server.HumanServer'
         }
         baseName = 'project-jar'
         from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
