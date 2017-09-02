@@ -8,16 +8,7 @@ import java.util.Map;
 import humans.Human;
 import services.IHumanService;
 
-/**
- * Server2 Owns the Human Data
- * @author seththeeke
- *
- */
 public class HumanService implements IHumanService{
-	
-	public HumanService(){
-		System.out.println("Creating Server 2 Human Service");
-	}
 	
 	public Map<String, Human> humans;
 

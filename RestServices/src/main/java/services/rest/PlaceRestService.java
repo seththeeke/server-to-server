@@ -23,12 +23,6 @@ public class PlaceRestService implements IPlaceRestService{
 	@Context
 	UriInfo uri;
 	
-	IPlaceService placeService;
-	
-	public PlaceRestService(){
-		System.out.println("Created PlaceRestService");
-	}
-	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlaces() throws InstantiationException, IllegalAccessException, ClassNotFoundException{

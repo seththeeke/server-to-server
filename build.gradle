@@ -144,6 +144,7 @@ project(':Interfaces') {
         compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: '2.7'
         compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-jetty-http', version: '2.7'
         compile group: 'org.glassfish.jersey.media', name: 'jersey-media-moxy', version: '2.7'
+        compile group: 'org.aeonbits.owner', name: 'owner', version: '1.0.9'
     }
 }
 

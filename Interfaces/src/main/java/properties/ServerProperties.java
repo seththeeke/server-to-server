@@ -3,7 +3,7 @@ package properties;
 import org.aeonbits.owner.Config;
 import org.aeonbits.owner.Config.Sources;
 
-@Sources({ "classpath:serverConfig.properties" })
+@Sources({ "file:~/Desktop/sethweb/server-to-server/server-to-server/Interfaces/src/main/resources/serverConfig.properties" })
 public interface ServerProperties extends Config {
 	
 	@Key("places.protocol")

@@ -7,24 +7,18 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.aeonbits.owner.ConfigFactory;
+
 import places.Place;
+import properties.ServerProperties;
 import services.IPlaceService;
 
-/**
- * Server 1 Owns the Place Data
- * @author seththeeke
- *
- */
 public class PlaceClientService implements IPlaceService{
-	
-	public PlaceClientService(){
-		System.out.println("Creating Server 2 Place Service");
-	}
 
 	@Override
 	public List<Place> getPlaces() {
 		final Client client = ClientBuilder.newClient();
-        Response response = client.target("http://localhost:8090/places")
+        Response response = client.target(getPlacesPath())
                                   .request(MediaType.APPLICATION_JSON).get();
         return Place.listFromJSON(response.readEntity(String.class));
 	}
@@ -32,10 +26,22 @@ public class PlaceClientService implements IPlaceService{
 	@Override
 	public Place getPlace(String placeId) {
         final Client client = ClientBuilder.newClient();
-        Response response = client.target("http://localhost:8090/places/" + placeId)
+        Response response = client.target(getPlacesPath() + "/" + placeId)
                                   .request(MediaType.APPLICATION_JSON).get();
         String placeJSON = response.readEntity(String.class);
         return Place.fromJSON(placeJSON);
+	}
+	
+	private String getPlacesPath(){
+		ServerProperties properties = ConfigFactory.create(ServerProperties.class);
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(properties.getPlaceProtocol());
+		stringBuilder.append("://");
+		stringBuilder.append(properties.getPlaceContext());
+		stringBuilder.append(":");
+		stringBuilder.append(properties.getPlacePort());
+		stringBuilder.append("/places");
+		return stringBuilder.toString();
 	}
 
 }

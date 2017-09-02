@@ -8,16 +8,7 @@ import java.util.Map;
 import places.Place;
 import services.IPlaceService;
 
-/**
- * Server 1 Owns the Place Data
- * @author seththeeke
- *
- */
 public class PlaceService implements IPlaceService{
-	
-	public PlaceService(){
-		System.out.println("Creating Server 1 Place Service");
-	}
 
 	private Map<String, Place> places;
 

@@ -26,12 +26,6 @@ public class HumanRestService implements IHumanRestService{
 	@Context
 	UriInfo uri;
 	
-	IHumanService humanService;
-	
-	public HumanRestService(){
-		System.out.println("Created HumanRestService");
-	}
-	
 	@GET
     @Produces(MediaType.APPLICATION_JSON)
 	@Override
