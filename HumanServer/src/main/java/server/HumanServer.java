@@ -1,15 +1,18 @@
 package server;
 
+import org.aeonbits.owner.ConfigFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+import properties.ServerProperties;
 import service.Services;
 
 public class HumanServer{
 
 	public static void main(String[] args) throws Exception{
-		Server server = new Server(8080);
+		ServerProperties properties = ConfigFactory.create(ServerProperties.class);
+		Server server = new Server(properties.getHumanPort());
 		
 		ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 	    context.setContextPath("/");
