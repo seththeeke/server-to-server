@@ -30,6 +30,37 @@ project(':Server1') {
 	}
 }
 
+project(':Server2') {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    task fatJar(type: Jar) {
+        manifest {
+            attributes 'Implementation-Title': 'Server Jar',
+                'Implementation-Version': 1.0,
+                'Main-Class': 'server.JettyServer'
+        }
+        baseName = 'project-jar'
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+        with jar
+    }
+ 
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile project(':Server2Services')
+        compile group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.6.v20170531'
+        compile group: 'org.eclipse.jetty', name: 'jetty-util', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-servlets', version: '9.4.6.v20170531'
+        compile group: 'org.eclipse.jetty', name: 'jetty-http', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-io', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-security', version: '9.4.5.v20170502'
+        compile group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.6.v20170531'   }
+}
+
 project(':Server1Services') {
     apply plugin: 'java'
     apply plugin: 'eclipse'
